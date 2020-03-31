@@ -23,7 +23,7 @@ beforeEach(() => {
 const agent = request.agent(app);
 beforeEach(() => {
   return agent
-    .post('api/v1/auth/login')
+    .post('/api/v1/auth/login')
     .send({
       username: 'fox',
       password: 'hoorayitsmyadoptionday',
