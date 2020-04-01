@@ -41,7 +41,6 @@ describe('post routes', () => {
     const post = await getPost();
     const user = await getUser({ _id: post.user });
     
-
     return request(app)
       .get(`/api/v1/posts/${post._id}`)
       .then(res => {
@@ -66,7 +65,7 @@ describe('post routes', () => {
         });
       });
   });
-  
+
 
 });
 
