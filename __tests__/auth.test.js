@@ -39,7 +39,7 @@ describe('auth routes', () => {
       });
   });
 
-  it('throws an error for an unauthorized user', () => {
+  it('verifies an authorized user', () => {
     return getAgent()
       .get('/api/v1/auth/verify')
       .then(res => {

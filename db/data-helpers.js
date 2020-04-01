@@ -25,9 +25,9 @@ beforeEach(() => {
   return agent
     .post('/api/v1/auth/login')
     .send({
-      username: 'fox',
-      password: 'hoorayitsmyadoptionday',
-      profilePhotoUrl: 'https://placedog.net/500' 
+      username: 'fakeUser',
+      password: 'iliketoeatapplesandbananas',
+      profilePhotoUrl: 'https://placedog.net/500'   
     });
 });
   
