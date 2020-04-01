@@ -9,7 +9,7 @@ const app = require('../lib/app');
 
 
 beforeAll(() => {
-  connect();
+  return connect();
 });
   
 beforeEach(() => {
@@ -20,16 +20,16 @@ beforeEach(() => {
   return seed();
 });
 
-const agent = request.agent(app);
-beforeEach(() => {
-  return agent
-    .post('/api/v1/auth/login')
-    .send({
-      username: 'fox',
-      password: 'hoorayitsmyadoptionday',
-      profilePhotoUrl: 'https://placedog.net/500' 
-    });
-});
+// const agent = request.agent(app);
+// beforeEach(() => {
+//   return agent
+//     .post('/api/v1/auth/login')
+//     .send({
+//       username: 'fox',
+//       password: 'hoorayitsmyadoptionday',
+//       profilePhotoUrl: 'https://placedog.net/500' 
+//     });
+// });
   
 afterAll(() => {
   return mongoose.connection.close();
@@ -40,6 +40,7 @@ const prepareAll = models => models.map(prepare);
 
 const files = fs.readdirSync('./lib/models');
 const getters = files
+  .filter(file => !file.includes('test'))
   .map(file => require(`../lib/models/${file}`))
   .filter(Model => Model.prototype instanceof mongoose.Model)
   .reduce((acc, Model) => {
