@@ -1,4 +1,7 @@
-const { getAgent, getUser, getPost } = require('../db/data-helpers');
+const { getAgent, getUser, getPost, getPosts } = require('../db/data-helpers');
+
+const request = require('supertest');
+const app = require('../lib/app');
 
 describe('post routes', () => {
   it('creates a post', async() => {
@@ -25,11 +28,16 @@ describe('post routes', () => {
   });
 });
 
-// * `POST /posts`
-//   * requires authentication
-//   * creates a new post
-//   * responds with the new post
-//   * HINT: get the user who created the post from `req.user`.
+it('gets all posts', async() => {
+  const posts = await getPosts();
+
+  return request(app)
+    .get('/api/v1/posts')
+    .then(res => {
+      expect(res.body).toEqual(posts);
+    });
+});
+
 
 
 // * `GET /posts`
