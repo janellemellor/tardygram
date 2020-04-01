@@ -1,6 +1,6 @@
 const request = require('supertest');
 const app = require('../lib/app');
-require('../db/data-helpers');
+const { getAgent } = require('../db/data-helpers');
 
 describe('auth routes', () => {
   it('signs up a user', () => {
@@ -39,7 +39,18 @@ describe('auth routes', () => {
       });
   });
 
-//   it('verifies a ')
+  it('throws an error for an unauthorized user', () => {
+    return getAgent()
+      .get('/api/v1/auth/verify')
+      .then(res => {
+        expect(res.body).toEqual({
+          _id: expect.any(String),
+          username: 'fakeUser',
+          profilePhotoUrl: 'https://placedog.net/500', 
+          __v: 0
+        });
+      });
+  });
   
 });
 
