@@ -38,10 +38,11 @@ describe('post routes', () => {
   });
 
   it('finds a post by id', async() => {
-    const user = await getUser();
-    const post = await getPost({ user: user._id });
+    const post = await getPost();
+    const user = await getUser({ _id: post.user });
+    
 
-    return getAgent()
+    return request(app)
       .get(`/api/v1/posts/${post._id}`)
       .then(res => {
         expect(res.body).toEqual({
