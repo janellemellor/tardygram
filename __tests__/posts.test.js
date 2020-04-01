@@ -38,7 +38,7 @@ describe('post routes', () => {
   });
 
   it('finds a post by id', async() => {
-    const user = await getUser({ username: 'fakeUser' });
+    const user = await getUser();
     const post = await getPost({ user: user._id });
 
     return getAgent()
