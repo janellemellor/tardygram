@@ -20,16 +20,16 @@ beforeEach(() => {
   return seed();
 });
 
-// const agent = request.agent(app);
-// beforeEach(() => {
-//   return agent
-//     .post('/api/v1/auth/login')
-//     .send({
-//       username: 'fox',
-//       password: 'hoorayitsmyadoptionday',
-//       profilePhotoUrl: 'https://placedog.net/500' 
-//     });
-// });
+const agent = request.agent(app);
+beforeEach(() => {
+  return agent
+    .post('/api/v1/auth/login')
+    .send({
+      username: 'fox',
+      password: 'hoorayitsmyadoptionday',
+      profilePhotoUrl: 'https://placedog.net/500' 
+    });
+});
   
 afterAll(() => {
   return mongoose.connection.close();
