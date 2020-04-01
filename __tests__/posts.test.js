@@ -52,15 +52,23 @@ describe('post routes', () => {
       });
   });
 
+  it('updates a post', async() => {
+    const user = await getUser({ username: 'fakeUser' });
+    const post = await getPost({ user: user._id });
+     
+    return getAgent()
+      .patch(`/api/v1/posts/${post._id}`)
+      .send({ caption: 'i am serious. dogs are better than humans.' })
+      .then(res => {
+        expect(res.body).toEqual({
+          ...post,
+          caption: 'i am serious. dogs are better than humans.' 
+        });
+      });
+  });
+  
+
 });
-
-
-// * `GET /posts/:id`
-//   * responds with a post by id
-//   * should include the populated user
-//   * should include all comments associated with the post (populated with commenter)
-//     * HINT: You'll need to make two separate queries and a `Promise.all`
-
 
 
 // * `PATCH /posts/:id`
@@ -68,6 +76,16 @@ describe('post routes', () => {
 //   * only can update the post caption
 //   * respond with the updated post
 //   * NOTE: make sure the user attempting to update the post owns it
+
+
+
+
+// UPDATE `GET /posts/:id`
+//  include all comments associated with the post (populated with commenter)
+//     * HINT: You'll need to make two separate queries and a `Promise.all`
+
+
+
 // * `DELETE /posts/:id`
 //   * requires authentication
 //   * deletes a post
