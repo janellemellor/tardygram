@@ -25,19 +25,21 @@ describe('auth routes', () => {
     return request(app)
       .post('/api/v1/auth/login')
       .send({
-        username: 'fox',
-        password: 'hoorayitsmyadoptionday',
-        profilePhotoUrl: 'https://placedog.net/500'    
+        username: 'fakeUser',
+        password: 'iliketoeatapplesandbananas',
+        profilePhotoUrl: 'https://placedog.net/500'  
       })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
-          username: 'fox',
-          profilePhotoUrl: 'https://placedog.net/500',
+          username: 'fakeUser',
+          profilePhotoUrl: 'https://placedog.net/500', 
           __v: 0
         });
       });
   });
+
+//   it('verifies a ')
   
 });
 
