@@ -92,11 +92,3 @@ describe('post routes', () => {
 
 
 
-
-// UPDATE `GET /posts/:id`
-//  include all comments associated with the post (populated with commenter)
-//     * HINT: You'll need to make two separate queries and a `Promise.all`
-
-
-// * `GET /posts/popular`
-//   * respond with a list of the 10 posts with the most comments
