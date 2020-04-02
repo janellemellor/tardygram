@@ -54,7 +54,8 @@ describe('post routes', () => {
   it('updates a post', async() => {
     const user = await getUser({ username: 'fakeUser' });
     const post = await getPost({ user: user._id });
-     
+    console.log(user); 
+    console.log(post);
     return getAgent()
       .patch(`/api/v1/posts/${post._id}`)
       .send({ caption: 'i am serious. dogs are better than humans.' })

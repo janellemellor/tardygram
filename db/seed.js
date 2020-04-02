@@ -2,7 +2,7 @@ const chance = require('chance').Chance();
 const User = require('../lib/models/User');
 const Post = require('../lib/models/Post');
 
-module.exports = async({ usersToCreate = 5, postsToCreate = 10 } = {}) => {
+module.exports = async({ usersToCreate = 5, postsToCreate = 100 } = {}) => {
   const loggedInUser = await User.create({
     username: 'fakeUser',
     password: 'iliketoeatapplesandbananas',
@@ -16,7 +16,7 @@ module.exports = async({ usersToCreate = 5, postsToCreate = 10 } = {}) => {
   })));
 
   const posts = await Post.create([...Array(postsToCreate)].map(() => ({
-    user: chance.pickone(users)._id,
+    user: chance.pickone([loggedInUser, ...users])._id,
     photoUrl: chance.url({ path: 'images' }),
     caption: chance.sentence(),
     tags:[chance.hashtag()]
