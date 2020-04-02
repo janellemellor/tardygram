@@ -26,13 +26,22 @@ describe('comment routes', () => {
       });
   });
 
+  it('deletes a comment', async() => {
+    const user = await getUser({ username: 'fakeUser' });
+    const comment = await getComment({ commentBy: user._id });
+
+    return getAgent()
+      .delete(`/api/v1/comments/${comment._id}`)
+      .then(res => {
+        expect(res.body).toEqual(comment);
+      });
+  });
+
 });
 
-// POST /comments
-// requires authentication
-// create a new comment
-// respond with the comment
-// HINT: get the user who created the comment from req.user.
+
+
+
 
 
 // DELETE /comments/:id
