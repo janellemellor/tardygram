@@ -1,4 +1,4 @@
-const { getAgent, getUser, getComment, getComments } = require('../db/data-helpers');
+const { getAgent, getUser, getPost, getComment } = require('../db/data-helpers');
 
 const request = require('supertest');
 const app = require('../lib/app');
@@ -6,7 +6,8 @@ const app = require('../lib/app');
 describe('comment routes', () => {
   it('creates a comment', async() => {
     const user = await getUser({ username: 'fakeUser' });
-     
+    const post = await getPost();
+
     return getAgent()
       .post('/api/v1/comments')
       .send({ 
@@ -25,6 +26,8 @@ describe('comment routes', () => {
       });
   });
 
+});
+
 // POST /comments
 // requires authentication
 // create a new comment
@@ -37,3 +40,4 @@ describe('comment routes', () => {
 // delete a comment by id
 // respond with the deleted comment
 // NOTE: make sure the user attempting to delete the comment owns it
+
