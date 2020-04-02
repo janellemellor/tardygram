@@ -82,18 +82,10 @@ describe('post routes', () => {
 
 
 
-
-
 // UPDATE `GET /posts/:id`
 //  include all comments associated with the post (populated with commenter)
 //     * HINT: You'll need to make two separate queries and a `Promise.all`
 
 
-
-// * `DELETE /posts/:id`
-//   * requires authentication
-//   * deletes a post
-//   * responds with the deleted post
-//   * NOTE: make sure the user attempting to delete the post owns it
 // * `GET /posts/popular`
 //   * respond with a list of the 10 posts with the most comments
