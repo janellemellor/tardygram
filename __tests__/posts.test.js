@@ -37,6 +37,19 @@ describe('post routes', () => {
       });
   });
 
+  it('gets the top ten posts', () => {
+    return request(app)
+      .get('/api/v1/posts/popular')
+      .then(res => {
+        expect(res.body.length).toEqual(10);
+        expect(res.body).toContainEqual({
+          _id: expect.any(String), 
+          caption: expect.any(String), 
+          totalComments: expect.any(Number)
+        });
+      });
+  });
+
   it('finds a post by id', async() => {
     const post = await getPost();
     const user = await getUser({ _id: post.user });
